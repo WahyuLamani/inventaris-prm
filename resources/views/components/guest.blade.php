@@ -1,4 +1,3 @@
 <div x-data="{ show: false }">
-    <span>You're not Login, Please Login first~</span>
-    <button @click="alert('Alpine Js is working !')">Click</button>
+    <span>selamat datang, <a href="/login">login disini !</a></span>
 </div>
