@@ -3,7 +3,7 @@
     <ul class="navbar-nav me-auto">
         @Auth
         <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="/barang">Daftar Barang</a>
+            <a class="nav-link {{ request()->is('barang') ? 'active' : '' }}" aria-current="page" href="/barang">Daftar Barang</a>
         </li>
         @endauth
     </ul>

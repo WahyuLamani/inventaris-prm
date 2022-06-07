@@ -16,6 +16,7 @@ class CreateBarangsTable extends Migration
         Schema::create('barang', function (Blueprint $table) {
             $table->id();
             $table->string('nama_barang');
+            $table->foreignId('cabang_id');
             $table->float('harga')->nullable();
             $table->string('merk')->nullable();
             $table->string('type')->nullable();
@@ -33,6 +34,6 @@ class CreateBarangsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('barangs');
+        Schema::dropIfExists('barang');
     }
 }
