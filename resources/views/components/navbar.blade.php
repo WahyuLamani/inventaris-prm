@@ -3,7 +3,10 @@
     <ul class="navbar-nav me-auto">
         @Auth
         <li class="nav-item">
-            <a class="nav-link {{ request()->is('barang') ? 'active' : '' }}" aria-current="page" href="/barang">Daftar Barang</a>
+            <a class="nav-link {{ request()->is('barang') ? 'active' : '' }}" aria-current="page" href="{{route('barang')}}">Barang</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {{ request()->is('outlet') ? 'active' : '' }}" aria-current="page" href="{{route('outlet')}}">Cabang</a>
         </li>
         @endauth
     </ul>
@@ -32,10 +35,11 @@
                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                     @if(Auth::user()->isAdmin())
                     <a class="dropdown-item" href="/users">Users</a>
+                    <a class="dropdown-item" href="/cabang">Cabang</a>
                     @endif
                     <a class="dropdown-item" href="#">Another action</a>
                     <hr class="dropdown-divider">
-                    <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#ubah_password" class="dropdown-item" href="#">Ubah Password</a>
+                    <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#ubah_password" class="dropdown-item">Ubah Password</a>
                     <a class="dropdown-item" href="#"
                     onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">
@@ -49,17 +53,17 @@
             </li>
             <x-modal id="ubah_password" title="Ubah Password" link="{{route('change-password')}}">
                 <x-slot name="body">
-                    <form id="ubah_password_submit" action="{{route('change-password')}}" method="POST">@csrf
-                        <div class="form-floating py-1">
+                    <form id="ubah_password_submit" class="d-grid gap-2" action="{{route('change-password')}}" method="POST">@csrf
+                        <div class="form-floating">
                             <input type="password" class="form-control" name="passwordLama" id="passLama" placeholder="name@example.com">
                             <label for="passLama">Password Lama</label>
                         </div>
                         <hr>
-                        <div class="form-floating py-1">
+                        <div class="form-floating">
                             <input type="password" class="form-control" name="passwordBaru" id="passBaru" placeholder="name@example.com">
                             <label for="passBaru">Password Baru</label>
                         </div>
-                        <div class="form-floating py-1">
+                        <div class="form-floating">
                             <input type="password" class="form-control" name="passwordBaru_confirmation" id="confirmPass" placeholder="name@example.com">
                             <label for="confirmPass">Konfirmasi Password Baru</label>
                         </div>
