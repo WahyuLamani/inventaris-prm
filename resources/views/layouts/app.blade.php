@@ -17,6 +17,7 @@
     <link href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css" rel="stylesheet">
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+    
 </head>
 <body>
     <div id="app">
@@ -39,5 +40,6 @@
             @yield('content')
         </main>
     </div>
+    @include('sweetalert::alert')
 </body>
 </html>

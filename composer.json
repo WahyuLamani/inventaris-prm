@@ -15,7 +15,8 @@
         "laravel/framework": "^8.0",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^3.4",
-        "rats/zkteco": "^002.0"
+        "rats/zkteco": "^002.0",
+        "realrashid/sweet-alert": "^5.1"
     },
     "require-dev": {
         "facade/ignition": "^2.3.6",
