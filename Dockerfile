@@ -1,52 +1,29 @@
-FROM php:7.4-fpm-alpine
+FROM php:7.4.1-apache
 
-RUN sed -i 's/9000/9001/' /usr/local/etc/php-fpm.d/zz-docker.conf
+USER root
 
-RUN apk update && apk add --no-cache \
-    bash \
-    icu-dev \
-    imap-dev \
-    libpng-dev \
-    libzip-dev \
-    shadow \
-    vim \
-    zlib-dev
+WORKDIR /var/www/html
 
-RUN docker-php-ext-install \
-    bcmath \
-    gd \
-    imap \
-    intl \
-    pcntl \
-    pdo_mysql \
-    zip \
-    sockets
+RUN apt update && apt install -y \
+        nodejs \
+        npm \
+        libpng-dev \
+        zlib1g-dev \
+        libxml2-dev \
+        libzip-dev \
+        libonig-dev \
+        zip \
+        curl \
+        unzip \
+    && docker-php-ext-configure gd \
+    && docker-php-ext-install -j$(nproc) gd \
+    && docker-php-ext-install pdo_mysql \
+    && docker-php-ext-install mysqli \
+    && docker-php-ext-install zip \
+    && docker-php-source delete
 
-# Install composer
-ENV COMPOSER_HOME /composer
-ENV PATH ./vendor/bin:/composer/vendor/bin:$PATH
-ENV COMPOSER_ALLOW_SUPERUSER 1
-RUN curl -s https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin/ --filename=composer
+COPY vhost.conf /etc/apache2/sites-available/000-default.conf
 
-# Setup working directory
-WORKDIR /var/www
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Add user for laravel application
-RUN addgroup --gid 1000 www && adduser -S www -G www
-
-# Copy existing application directory contents
-COPY composer.* ./
-RUN composer install --no-scripts --no-dev
-COPY . /var/www
-
-# Copy existing application directory permissions
-COPY --chown=www:www . /var/www
-
-# Change current user to www
-USER www
-
-# list folder
-RUN ls -la public
-# Expose port 9001 and start php-fpm server
-EXPOSE 9001
-CMD ["php-fpm"]
+RUN chown -R www-data:www-data /var/www/html && a2enmod rewrite
