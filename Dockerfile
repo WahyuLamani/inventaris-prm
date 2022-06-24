@@ -32,5 +32,6 @@ RUN composer install --no-scripts --no-dev
 
 # Copy existing application directory contents
 COPY . /var/www/html
+RUN ls
 
 RUN chown -R www-data:www-data /var/www/html && a2enmod rewrite
