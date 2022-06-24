@@ -24,6 +24,13 @@ RUN apt update && apt install -y \
 
 COPY vhost.conf /etc/apache2/sites-available/000-default.conf
 
+# Install composer
+ENV COMPOSER_ALLOW_SUPERUSER 1
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+COPY composer.* ./
+RUN composer install --no-scripts --no-dev
+
+# Copy existing application directory contents
+COPY . /var/www/html
 
 RUN chown -R www-data:www-data /var/www/html && a2enmod rewrite
