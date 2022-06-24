@@ -14,8 +14,8 @@ class CreateBarangRuanganTable extends Migration
     public function up()
     {
         Schema::create('barang_ruangan', function (Blueprint $table) {
-            $table->foreignId('id_barang')->references('id')->on('barang')->onDelete('cascade');
-            $table->foreignId('ruangan')->references('id')->on('ruangan')->onDelete('cascade');
+            $table->foreignId('id_barang');
+            $table->foreignId('id_ruangan');
             $table->timestamps();
         });
     }
