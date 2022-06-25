@@ -7,23 +7,34 @@
             <x-datatable>
                 <x-slot name="thead">
                     <tr>
-                        <th>Name</th>
-                        <th>Position</th>
-                        <th>Office</th>
-                        <th>Age</th>
-                        <th>Start date</th>
-                        <th>Salary</th>
+                        <th>Nama barang</th>
+                        <th>Cabang</th>
+                        <th>harga</th>
+                        <th>Merk</th>
+                        <th>Type</th>
+                        <th>Nomor seri</th>
+                        <th>tahun</th>
+                        <th>vendor</th>
+                        <th>Created At</th>
+                        <th></th>
                     </tr>
                 </x-slot>
                 <x-slot name="tbody">
                     @foreach ($barang as $row)
                     <tr>
-                        <td>Tiger Nixon</td>
-                        <td>System Architect</td>
-                        <td>Edinburgh</td>
-                        <td>61</td>
-                        <td>2011-04-25</td>
-                        <td>$320,800</td>
+                        <td>{{$row->nama_barang}}</td>
+                        <td>{{$row->cabang_id}}</td>
+                        <td>{{$row->harga}}</td>
+                        <td>{{$row->merk}}</td>
+                        <td>{{$row->type}}</td>
+                        <td>{{$row->nomor_seri}}</td>
+                        <td>{{$row->tahun}}</td>
+                        <td>{{$row->vendor}}</td>
+                        <td>{{$row->created_at->format('d M, Y')}}</td>
+                        <td><x-dropdown 
+                            value="data1,data2,data3"
+                            
+                            /></td>
                     </tr>
                     @endforeach
                 </x-slot>

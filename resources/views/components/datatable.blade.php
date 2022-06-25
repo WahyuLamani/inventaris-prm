@@ -1,6 +1,6 @@
 <div class="card">
     <div class="card-body">
-        <table id="data-table" class="table table-hover" style="width:100%">
+        <table id="data-table" class="table table-hover dt-responsive nowrap" style="width:100%">
             <thead>
                 {{$thead}}
             </thead>
