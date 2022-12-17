@@ -16,13 +16,15 @@ class CreateBarangsTable extends Migration
         Schema::create('barang', function (Blueprint $table) {
             $table->id();
             $table->string('nama_barang');
-            $table->foreignId('cabang_id');
+            $table->foreignId('cabang_id')->nullable();
+            $table->foreignId('ruangan_id')->nullable();
+            $table->foreignId('vendor_id')->nullable();
+            $table->foreignId('kelompok_barang_id')->nullable();
             $table->float('harga')->nullable();
             $table->string('merk')->nullable();
             $table->string('type')->nullable();
             $table->char('nomor_seri')->nullable();
             $table->string('tahun')->nullable();
-            $table->string('vendor')->nullable();
             $table->timestamps();
         });
     }

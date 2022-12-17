@@ -16,6 +16,7 @@ class CreateRuangansTable extends Migration
         Schema::create('ruangan', function (Blueprint $table) {
             $table->id();
             $table->string('nama_ruangan');
+            $table->char('kode_ruangan', 4);
             $table->timestamps();
         });
     }
